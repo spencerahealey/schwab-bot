@@ -23,8 +23,8 @@ A self-annealing investment research and advisory agent that runs in [Claude Cod
 
 1. **Clone this repo** into a directory where you'll run Claude Code:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/portfolio-agent.git
-   cd portfolio-agent
+   git clone https://github.com/spencerahealey/schwab-bot.git
+   cd schwab-bot
    ```
 
 2. **Customize `CLAUDE.md`** — fill in the `About You` section with your age, income, risk tolerance, time horizon, and professional edge. This is how the agent calibrates advice to your situation.
