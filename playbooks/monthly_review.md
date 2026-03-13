@@ -10,14 +10,15 @@ Triggered by: CSV upload + "run my review", "portfolio review", "how am I doing"
 
 3. **Concentration analysis.** Group holdings by sector/theme. Flag if any single theme exceeds 50% with a specific downside scenario and dollar amount. Identify correlation risk — which positions drop together in a selloff?
 
-4. **Deep research on every holding.** For each position:
+4. **Deep research on every holding — PARALLELIZED.** Launch one sub-agent per ticker (all in parallel). Each agent returns:
    - Latest earnings (revenue growth, EPS, guidance)
    - Valuation check (forward P/E vs historical)
    - Thesis check against `position_theses.md` — still valid?
    - Material news, upcoming catalysts
    - **Verdict:** Strong conviction / Hold / Watch closely / Thesis weakening / Thesis broken
+   See `playbooks/deep_research.md` for agent protocol.
 
-5. **Macro context.** S&P/NASDAQ valuation, VIX, Fed policy, inflation, sector rotation. **Connect macro to the user's specific holdings** — don't just report news.
+5. **Macro context** (separate parallel agent). S&P/NASDAQ valuation, VIX, Fed policy, inflation, sector rotation. **Connect macro to the user's specific holdings** — don't just report news.
 
 6. **Action items.**
    - Positions to act on (with reasoning and tax implications for brokerage)
@@ -39,3 +40,4 @@ Triggered by: CSV upload + "run my review", "portfolio review", "how am I doing"
 | Date | Change | Reason |
 |------|--------|--------|
 | 2026-03-12 | Initial creation | — |
+| 2026-03-12 | Added parallel agent research | Research all holdings simultaneously via sub-agents |
