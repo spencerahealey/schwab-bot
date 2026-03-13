@@ -1,0 +1,18 @@
+{
+  "last_updated": null,
+  "last_review": null,
+  "combined_total": 0,
+  "accounts": {
+    "brokerage": {
+      "total": 0,
+      "cash": 0,
+      "positions": {}
+    },
+    "roth": {
+      "total": 0,
+      "cash": 0,
+      "positions": {}
+    }
+  },
+  "history": []
+}
