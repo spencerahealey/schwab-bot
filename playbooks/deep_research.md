@@ -1,58 +1,82 @@
 # Playbook: Deep Research
 
-Triggered by: "deep research [TOPIC/TICKER]", "research everything about [X]", or any request for comprehensive analysis.
+Triggered by: "deep research [ANYTHING]", "research everything about [X]", or any request for comprehensive, multi-source analysis.
+
+Deep research applies to **any topic** — a single ticker, an entire portfolio, a strategy question ("build me a low-risk portfolio"), a macro theme ("how do tariffs affect semis"), or anything else that benefits from structured, parallel investigation.
 
 ## How It Works
 
-This playbook uses **parallel sub-agents** to maximize research breadth and speed. Each agent runs independently, searches the web, reads primary sources, and returns structured findings.
+This playbook uses **parallel sub-agents** to maximize research breadth and speed. Each agent runs independently, searches the web, reads primary sources, and returns structured findings. The number and focus of agents adapts to the question.
 
-## Single Ticker Deep Research
+## Agent Design Principles
 
-Launch 3 agents in parallel:
+1. **Decompose the question.** Break the research request into 3 independent angles that, combined, give a comprehensive answer.
+2. **Launch all agents in parallel.** Each agent gets a clear, specific research mandate.
+3. **Each agent searches exhaustively.** Multiple search queries, read full pages, follow links, find primary sources.
+4. **Synthesize across agents.** Resolve contradictions, identify consensus, surface disagreements.
+5. **Deliver actionable output.** Every research report ends with concrete next steps or recommendations.
 
-1. **Financials Agent** — Latest earnings (revenue, EPS, margins, guidance), historical growth rates, balance sheet health, cash flow, valuation multiples (forward P/E, P/S, EV/EBITDA vs 5yr avg)
-2. **Competitive & Strategic Agent** — Market position, competitive moat, TAM, key competitors, management quality, recent strategic moves (M&A, partnerships, product launches)
-3. **Catalysts & Risks Agent** — Upcoming earnings dates, product launches, regulatory risks, macro sensitivity, insider activity, short interest, analyst consensus and price targets
+## Research Modes
 
-### Output Format
-Each agent returns structured findings with source dates. The synthesis should include:
-- **Bull case** (specific catalysts + upside estimate)
-- **Bear case** (specific risks + downside estimate)
-- **Thesis verdict** relative to existing position thesis (if held)
-- **Key dates** to watch
+### Single Ticker
+3 agents: Financials, Competitive/Strategic, Catalysts/Risks.
 
-## Portfolio-Wide Research (Monthly Review)
+Output: Bull case, bear case, thesis verdict, key dates.
 
-Launch **one agent per holding**, all in parallel. Each agent researches its assigned ticker and returns:
-- Latest earnings summary (revenue growth, EPS, guidance)
-- Forward P/E vs historical average
-- Material news since last review
-- Thesis status: **Strong conviction / Hold / Watch closely / Thesis weakening / Thesis broken**
-- One-line recommendation
+### Portfolio-Wide (Monthly Review)
+One agent per holding (all parallel) + one macro agent.
 
-After all agents return, synthesize into the monthly review format:
-- Portfolio snapshot with updated prices
-- Concentration analysis
-- Per-holding verdicts
-- Macro context (separate agent)
-- Action items
+Output: Per-holding verdicts, concentration analysis, action items.
 
-## Topic Research (Non-Ticker)
+### Strategy Construction
+_e.g., "build me a low-risk portfolio", "what's a good income strategy", "design a barbell portfolio"_
 
-For broad topics (e.g., "AI infrastructure supply chain", "tariff impact on semis"):
-Launch 3 agents with different search angles:
-1. **Overview Agent** — What's happening, key players, market size
-2. **Impact Agent** — How does this affect the user's holdings specifically?
-3. **Opportunity Agent** — Are there investable ideas the user is missing?
+3 agents:
+1. **Framework Agent** — Research the strategy concept: what defines it, historical performance, who it's suited for, common implementations
+2. **Candidates Agent** — Find specific tickers/ETFs that fit the strategy: screen for candidates, compare expense ratios/yields/risk metrics, identify best-in-class options
+3. **Risk & Context Agent** — What can go wrong: historical drawdowns, correlation to existing holdings, current market conditions, tax implications
+
+Output: Recommended portfolio with specific allocations, reasoning for each pick, risks to monitor, how it fits alongside existing holdings.
+
+### Sector / Theme Analysis
+_e.g., "AI infrastructure supply chain", "nuclear energy renaissance", "defense stocks"_
+
+3 agents:
+1. **Landscape Agent** — Key players, market size, growth drivers, competitive dynamics
+2. **Holdings Impact Agent** — How does this affect the user's current positions? Which holdings benefit/lose?
+3. **Opportunity Agent** — Investable ideas the user is missing, with entry theses
+
+Output: Sector map, impact on current portfolio, ranked opportunities.
+
+### Macro / Event Analysis
+_e.g., "what happens if Fed cuts rates", "tariff impact", "recession playbook"_
+
+3 agents:
+1. **Scenario Agent** — What's happening, historical precedents, probability-weighted outcomes
+2. **Portfolio Stress Test Agent** — How would each holding perform under this scenario? Which are most exposed?
+3. **Positioning Agent** — What moves (if any) should be made? What hedges exist?
+
+Output: Scenario analysis, portfolio exposure assessment, recommended actions.
+
+### Open-Ended Research
+_Anything that doesn't fit the above categories._
+
+Decompose into 3 research angles based on the specific question. Always include:
+1. An agent focused on **facts and data**
+2. An agent focused on **implications for the user's portfolio**
+3. An agent focused on **actionable recommendations**
 
 ## Rules
 - Every finding must include a date or timeframe — undated claims are flagged
 - Fact vs opinion: label analyst targets as opinions, revenue/earnings as facts
 - If an agent can't find reliable data on something, it says so — no guessing
+- Always connect findings back to the user's portfolio and situation
 - Save all substantial research to `strategy/research_notes/{date}_{topic}.md`
+- End every report with clear, specific next steps
 
 ## Change Log
 
 | Date | Change | Reason |
 |------|--------|--------|
 | 2026-03-12 | Initial creation | Built parallel agent research workflow |
+| 2026-03-12 | Expanded to cover any research topic | Deep research should handle strategies, macro, sectors — not just tickers |
